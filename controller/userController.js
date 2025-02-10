@@ -40,7 +40,16 @@ exports.loginController = async(req,res)=>{
     }
 }
 
-exports.getAllUsers = async(req,res)=>{
+exports.getUsersList = async(req,res)=>{
+    try{
+       const allUser = await users.find().select("username")
+      res.status(200).json(allUser)
+    }catch(e){
+        console.log(e);
+        res.status(401).json(e)
+    }
+}
+exports.getUsersDetails = async(req,res)=>{
     try{
        const allUser = await users.find()
       res.status(200).json(allUser)
